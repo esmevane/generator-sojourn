@@ -1,0 +1,11 @@
+{
+  "name": "<%= _.slugify(appName) %>",
+  "version": "0.0.0",
+  "dependencies": {
+    "backbone":   "",
+    "d3":         "",
+    "jquery":     "",
+    "requirejs":  "",
+    "underscore": ""
+  }
+}
