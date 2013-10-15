@@ -55,9 +55,8 @@ module.exports = (grunt) ->
     coffee:
       glob_to_multiple:
         expand: true
-        flatten: true
         cwd: "assets/scripts"
-        src: ["*.coffee"]
+        src: ["**/*.coffee"]
         dest: "app/scripts"
         ext: ".js"
     sass:

@@ -1,7 +1,14 @@
-var backboneDependencies, dependencies, initializers, postInitialize;
+var backboneDependencies, dependencies, initializers, postInitialize,
+  applicationModels;
 
 initializers = [
   'application',
+  'models-manifest',
+  'collections-manifest',
+  'views-manifest',
+  'routers-manifest',
+  'components-manifest',
+  'pages-manifest',
   'vendor/jquery/jquery.min',
   'vendor/underscore/underscore-min',
   'vendor/backbone/backbone-min',
@@ -12,7 +19,10 @@ backboneDependencies = {
   deps: [ 'vendor/jquery/jquery.min', 'vendor/underscore/underscore-min' ]
 };
 
-dependencies = { 'vendor/backbone.min': backboneDependencies };
+applicationModels = { deps: [ 'application' ] }
+
+dependencies = { 'vendor/backbone.min': backboneDependencies,
+  'model-manifest': applicationModels };
 
 postInitialize = function postInitialize(application) {
   window.<%= _.capitalize(appName) %> = application;

@@ -1,0 +1,1 @@
+class <%= _.classify(appName) %>.Routers.<%= _.classify(name) %> extends Backbone.Router

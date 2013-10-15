@@ -1,0 +1,1 @@
+class <%= _.classify(appName) %>.Models.<%= _.classify(name) %> extends Backbone.Model
