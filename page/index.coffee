@@ -1,9 +1,10 @@
-generator = require '../sojourn-generator'
+Generator = require '../sojourn-generator'
 
-class PageGenerator extends generator
-  _define:       -> 'page'
-  makeDirectory: -> super
-  build:         -> super
-  register:      -> super
+class PageGenerator extends Generator
+  _target: 'page'
+
+  layout:   -> super
+  build:    -> super
+  register: -> super
 
 module.exports = PageGenerator

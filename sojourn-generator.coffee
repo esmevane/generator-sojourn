@@ -1,36 +1,36 @@
 pluralize   = require('underscore.inflections').pluralize
 yeoman      = require 'yeoman-generator'
-directories = require './directories'
-manifest    = require './sojourn-manifest'
-settings    = require './sojourn-settings'
+Directories = require './directories'
+Manifest    = require './sojourn-manifest'
+Settings    = require './sojourn-settings'
 
 class SojournGenerator extends yeoman.generators.NamedBase
   constructor: (args, options, config) ->
-    @section   = @_define()
-    @sections  = pluralize @section
     super
-    filename   = "app/scripts/#{@sections}-manifest.js"
-    directory  = "app/scripts/#{@sections}"
-    @settings  = new settings
-    @manifest  = new manifest @, filename, directory
-    @appName   = @settings.get 'name'
-    @_postInitialize()
 
-  _setup: ->
-  _postInitialize: ->
+    @_targets = pluralize @_target
+    filename  = "app/scripts/#{@_targets}-manifest.js"
+    directory = "app/scripts/#{@_targets}"
+    @settings = new Settings
+    @manifest = new Manifest filename, directory
+    @appName  = @settings.get 'name'
 
-  makeDirectory: ->
-    directories.make @, 'app', 'app/scripts', "app/scripts/#{@sections}",
-      'assets', 'assets/scripts', "assets/scripts/#{@sections}"
+    @initialize()
+
+  initialize: ->
+
+  layout: ->
+    Directories.make @, 'app', 'app/scripts', "app/scripts/#{@_targets}",
+      'assets', 'assets/scripts', "assets/scripts/#{@_targets}"
 
   build: ->
     name = @_.slugify @name
-    @template "#{@section}.coffee",
-      "assets/scripts/#{@sections}/#{name}.coffee"
-    @write "app/scripts/#{@sections}/#{name}.js", ''
+    @template "#{@_target}.coffee",
+      "assets/scripts/#{@_targets}/#{name}.coffee"
+    @write "app/scripts/#{@_targets}/#{name}.js", ''
 
   register: ->
-    @settings.push @sections, @name
+    @settings.push @_targets, @name
     @settings.save()
     @manifest.save()
 

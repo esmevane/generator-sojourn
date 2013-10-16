@@ -1,14 +1,15 @@
 singularize = require('underscore.inflections').singularize
-generator   = require '../sojourn-generator'
+Generator   = require '../sojourn-generator'
 
-class CollectionGenerator extends generator
-  _define:       -> 'collection'
-  makeDirectory: -> super
-  build:         -> super
-  register:      -> super
+class CollectionGenerator extends Generator
+  _target: 'collection'
 
-  _postInitialize: ->
+  initialize: ->
     @modelName = singularize @name
     @hookFor 'sojourn:model', args: @modelName
+
+  layout:   -> super
+  build:    -> super
+  register: -> super
 
 module.exports = CollectionGenerator

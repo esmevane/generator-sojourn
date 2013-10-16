@@ -1,9 +1,10 @@
-generator = require '../sojourn-generator'
+Generator = require '../sojourn-generator'
 
-class ModelGenerator extends generator
-  _define:       -> 'model'
-  makeDirectory: -> super
-  build:         -> super
-  register:      -> super
+class ModelGenerator extends Generator
+  _target: 'model'
+
+  layout:   -> super
+  build:    -> super
+  register: -> super
 
 module.exports = ModelGenerator

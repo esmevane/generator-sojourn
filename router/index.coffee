@@ -1,9 +1,10 @@
-generator = require '../sojourn-generator'
+Generator = require '../sojourn-generator'
 
-class RouterGenerator extends generator
-  _define:       -> 'router'
-  makeDirectory: -> super
-  build:         -> super
-  register:      -> super
+class RouterGenerator extends Generator
+  _target: 'router'
+
+  layout:   -> super
+  build:    -> super
+  register: -> super
 
 module.exports = RouterGenerator

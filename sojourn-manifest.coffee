@@ -2,7 +2,7 @@ _  = require 'underscore'
 fs = require 'fs'
 
 class SojournManifest
-  constructor: (@builder, @manifest, @directory) ->
+  constructor: (@manifest, @directory) ->
 
   contents: ->
     relative = @directory.replace 'app/', ''
@@ -10,6 +10,6 @@ class SojournManifest
     fileList = _.map files, (file) -> "#{relative}/#{file}"
     "require(#{JSON.stringify fileList});"
 
-  save: -> @builder.write @manifest, @contents()
+  save: -> fs.writeFileSync @manifest, @contents()
 
 module.exports = SojournManifest

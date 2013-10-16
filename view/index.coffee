@@ -1,9 +1,10 @@
-generator = require '../sojourn-generator'
+Generator = require '../sojourn-generator'
 
-class ViewGenerator extends generator
-  _define:       -> 'view'
-  makeDirectory: -> super
-  build:         -> super
-  register:      -> super
+class ViewGenerator extends Generator
+  _target: 'view'
+
+  layout:   -> super
+  build:    -> super
+  register: -> super
 
 module.exports = ViewGenerator
